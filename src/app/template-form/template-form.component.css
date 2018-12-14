@@ -1,0 +1,8 @@
+input.ng-invalid, select.ng-invalid {
+  border-right: 6px solid red;
+}
+
+input, select {
+  border-style: none;
+  border-radius: 2px;
+}

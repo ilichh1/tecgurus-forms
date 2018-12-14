@@ -1,0 +1,42 @@
+<form *ngIf="!isTheFormSubmitted" (submit)="onFormSubmit(formulario)" #formulario="ngForm">
+  <p>
+    <label>
+      Nombre:
+      <input #controlNombre="ngModel" type="text" placeholder="Juanito Ramiro" name="nombre" [(ngModel)]="name" required><br>
+      <span *ngIf="!controlNombre.valid && controlNombre.touched">Tu nombre es necesario.</span>
+    </label>
+  </p>
+  <p>
+    <label>Correo electronico:
+      <input type="texr" placeholder="juanito.ramiro@gmail.com" name="email" [(ngModel)]="email" email><br>
+      <span>El correo es incorrecto.</span>
+    </label>
+  </p>
+  <p>
+    <label>
+      Colonia:
+      <select name="colonia" [(ngModel)]="colonia">
+        <option value="null" disabled selected>Colonia donde vive...</option>
+        <option *ngFor="let colonia of colonias" [value]="colonia">{{ colonia }}</option>
+      </select>
+    </label>
+  </p>
+  <button type="submit" [disabled]="formulario.form.status === 'INVALID'" >Enviar!</button>
+</form>
+
+<div *ngIf="isTheFormSubmitted" class="visualizador">
+  <h2>Los valores que envio son: </h2>
+  <p>
+    <b>Nombre: </b>
+    <span>{{ name }}</span>
+  </p>
+  <p>
+    <b>Email: </b>
+    <span>{{ email }}</span>
+  </p>
+  <p>
+    <b>Colonia: </b>
+    <span>{{ colonia }}</span>
+  </p>
+  <button (click)="onResetForm()">Resetear</button>
+</div>
